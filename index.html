@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <section class="parent">
+      <div class="container">
+        <div class="a">
+          <label for="">Budget</label>
+          <input
+            type="number"
+            placeholder="Enter Total Amount"
+            class="budgetInput"
+          />
+          <div style="display: flex; flex-direction: column; gap: 50px;">
+            <button class="setBudgetBtn">Set budget</button>
+            <button class="clear">Clear Board</button>
+          </div>
+        </div>
+        <div class="a">
+          <label for="">Expenses</label>
+          <input
+            type="text"
+            placeholder="Enter Title Of Product"
+            class="expensesName"
+          />
+          <p class="error"></p>
+          <input
+            type="number"
+            placeholder="Enter Cost Of Product"
+            class="expensesCost"
+          />
+          <div style="display: flex; gap: 5px" class="hold" data-id="">
+            <button class="amount">Check Amount</button>
+            <button class="cancle" data-cancle="100">Cancle Edit</button>
+          </div>
+        </div>
+      </div>
+      <div class="b">
+        <div class="c">
+          <div class="d">
+            <h3>Total Budget</h3>
+            <p class="totalBudget">0</p>
+          </div>
+          <div class="d">
+            <h3>Expenses</h3>
+            <p class="expenses">0</p>
+          </div>
+          <div class="d">
+            <h3>Balance</h3>
+            <p class="balance">0</p>
+          </div>
+        </div>
+        <div class="e">
+          <h3>expense list</h3>
+          <div class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
