@@ -46,13 +46,6 @@ function showExpenses() {
 showExpenses();
 
 
-let currentBudget = totalBudget.textContent
-let currentExpenses = 0;
-let moneyBalance = 0;
-
-
-
-
 
 const btn = setBudgetBtn.addEventListener("click", (event) => {
   const number = Number(budgetInput.value);
@@ -64,6 +57,7 @@ const btn = setBudgetBtn.addEventListener("click", (event) => {
 });
 
 const btn2 = amount.addEventListener("click", (event) => {
+  const currentBudget = Number(localStorage.getItem("budgetAmt"))
 
   if (currentBudget === 0) {
     error.textContent = "Set budget before expenses";
