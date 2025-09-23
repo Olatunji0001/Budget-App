@@ -13,12 +13,13 @@ const cancleEdit = document.querySelector(".cancle");
 const edit = document.querySelector(".hold");
 const clear = document.querySelector(".clear");
 
+
 function diplayExpenses() {
   const goods = JSON.parse(localStorage.getItem("goods")) || [];
   goods.forEach((exp) => {
     list.innerHTML += `
     <div class="you">
-      <p class="name5">${exp.name}</p>
+      <p class="name5">${exp.name.charAt(0).toUpperCase() + exp.name.slice(1)}</p>
       <p class="spending">${exp.value}</p>
       <div>
         <button class="editBtn" data-edit=${exp.id}>Edit</button>
@@ -106,7 +107,7 @@ const btn2 = amount.addEventListener("click", (event) => {
     localStorage.setItem("goods", JSON.stringify(goods));
 
     list.innerHTML += `<div class="you">
-        <p class="name5">${newGood.name}</p>
+        <p class="name5">${newGood.name.charAt(0).toUpperCase() + newGood.name.slice(1)}</p>
         <p class="spending">${newGood.value}</p>
         <div class="deledit">
           <button class="editBtn" data-edit=${newGood.id}>Edit</button>
