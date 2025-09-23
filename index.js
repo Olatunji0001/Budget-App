@@ -13,9 +13,6 @@ const cancleEdit = document.querySelector(".cancle");
 const edit = document.querySelector(".hold");
 const clear = document.querySelector(".clear");
 
-let currentBudget = Number(localStorage.getItem("budgetAmt"));
-let moneyBalance = Number(balance.textContent);
-let currentExpenses = Number(localStorage.getItem("expensesAmt"));
 function diplayExpenses() {
   const goods = JSON.parse(localStorage.getItem("goods")) || [];
   goods.forEach((exp) => {
@@ -31,34 +28,42 @@ function diplayExpenses() {
   `;
   });
 }
-
 diplayExpenses();
 
 function showExpenses() {
   const value = JSON.parse(localStorage.getItem("goods")) || [];
   const add = value.map((e) => Number(e.value));
   const total = add.reduce((sum, num) => sum + num, 0);
+
+  const currentBudget = Number(localStorage.getItem("budgetAmt")) || 0;
+
   totalBudget.textContent = currentBudget;
   expenses.textContent = total;
-  moneyBalance = currentBudget - total;
+  const moneyBalance = currentBudget - total;
   balance.textContent = moneyBalance;
 }
-
 showExpenses();
+
+
+let currentBudget = totalBudget.textContent
+let currentExpenses = 0;
+let moneyBalance = 0;
+
+
+
+
 
 const btn = setBudgetBtn.addEventListener("click", (event) => {
   const number = Number(budgetInput.value);
   const value = Number(localStorage.getItem("budgetAmt"));
   const total = number + value;
   localStorage.setItem("budgetAmt", total.toString());
-  currentBudget = total;
-  moneyBalance = number + moneyBalance;
+  showExpenses()
   budgetInput.value = "";
-  totalBudget.textContent = currentBudget;
-  balance.textContent = moneyBalance;
 });
 
 const btn2 = amount.addEventListener("click", (event) => {
+
   if (currentBudget === 0) {
     error.textContent = "Set budget before expenses";
     return setTimeout(() => {
@@ -71,6 +76,8 @@ const btn2 = amount.addEventListener("click", (event) => {
       error.textContent = "";
     }, 5000);
   }
+
+
 
   const goods = JSON.parse(localStorage.getItem("goods")) || [];
   const check = edit.dataset.id;
@@ -101,7 +108,7 @@ const btn2 = amount.addEventListener("click", (event) => {
     list.innerHTML += `<div class="you">
         <p class="name5">${newGood.name}</p>
         <p class="spending">${newGood.value}</p>
-        <div>
+        <div class="deledit">
           <button class="editBtn" data-edit=${newGood.id}>Edit</button>
           <button class="deleteBtn" data-id=${newGood.id}>Delete</button>
         </div>
@@ -110,8 +117,6 @@ const btn2 = amount.addEventListener("click", (event) => {
 
   expensesName.value = "";
   expensesCost.value = "";
-  balance.textContent = moneyBalance;
-  expenses.textContent = currentExpenses;
   showExpenses();
 });
 
@@ -158,7 +163,8 @@ const clearBtn = clear.addEventListener("click", () => {
   localStorage.setItem("budgetAmt", "0");
 
   list.innerHTML = "";
-  totalBudget.textContent = 0;
-  expenses.textContent = 0;
-  balance.textContent = 0;
+  expenses.textContent = "0";
+  balance.textContent = "0";
+  totalBudget.textContent = "0";
+  showExpenses();
 });
